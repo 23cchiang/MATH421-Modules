@@ -57,3 +57,61 @@ if not original.success or not competition.success:
 # Figure 1: Population vs time
 fig, axes = plt.subplots(2, 1, figsize=(9, 7), sharex=True)
 
+axes[0].plot(original.t, original.y[0] label="Original")
+axes[0].plot(competition.t, competition.y[0],
+             label="Internal competition")
+axes[0].set_ylabel("Prey population")
+axes[0].legend()
+axes[0].grid(True)
+
+axes[1].plot(original.t, original.y[1], label="Original")
+axes[1].plot(competition.t, competition.y[1],
+             label="Internal competition")
+axes[1].set_xlabel("Time (years)")
+axes[1].set_ylabel("Predator population")
+axes[1].legend()
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.savefig("population_vs_time.png", dpi=200)
+plt.show()
+
+# Figure 2: Phase plane
+plt.figure(figsize=(8,6))
+plt.plot(original.y[0], original.y[1], label="Original")
+plt.plot(competition.y[0], competition.y[1],
+         label="Internal competition")
+plt.xlabel("Prey population")
+plt.ylabel("Predator population")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig("phase_plane.png", dpi=200)
+plt.show()
+
+# Print the original equilibrium and the new equilibrium
+# Solve the two nonzero equilibrium equations:
+# c_x X + gamma Y = eta
+# delta X - c_y Y = sigma
+
+A = np.array([
+    [c_x, gamma],
+    [delta, -c_y]
+])
+
+b = np.array({eta, sigma})
+X_eq_new, Y_eq_new = np.linalg.solve(A, b)
+
+print("Original equilibrium")
+print(f"Prey: {X_eq_original:.4f}")
+print(f"Predators: {Y_eq_original:.4f}")
+
+print("\nInternal-competition equilibrium")
+print(f"Prey: {X_eq_new:.4f}")
+print(f"Predators: {Y_eq_new:.4f}")
+
+print("\nFinal simulated populations at t = 20:")
+print(f"Original Prey: {original.y[0, -1]:.4f}")
+print(f"Original predators: {original.y[1, -1]:.4f}")
+print(f"Competition prety: {competition.y[0, -1]:.4f}")
+print(f"Competition predators: {competition.y[1, -1]:.4f}")
