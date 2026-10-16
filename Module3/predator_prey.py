@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.integrate import solve_ivp
+from scipy.integrate import solve_ivp
 
 # Original model parameters
 eta = 7.5
@@ -57,7 +57,7 @@ if not original.success or not competition.success:
 # Figure 1: Population vs time
 fig, axes = plt.subplots(2, 1, figsize=(9, 7), sharex=True)
 
-axes[0].plot(original.t, original.y[0] label="Original")
+axes[0].plot(original.t, original.y[0], label="Original")
 axes[0].plot(competition.t, competition.y[0],
              label="Internal competition")
 axes[0].set_ylabel("Prey population")
@@ -97,9 +97,10 @@ plt.show()
 A = np.array([
     [c_x, gamma],
     [delta, -c_y]
-])
+], dtype=float)
 
-b = np.array({eta, sigma})
+b = np.array([eta, sigma], dtype=float)
+
 X_eq_new, Y_eq_new = np.linalg.solve(A, b)
 
 print("Original equilibrium")
