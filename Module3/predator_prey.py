@@ -14,7 +14,7 @@ c_y = 0.2 / 100000
 
 # Original equilibrium
 X_eq_original = sigma / delta
-Y_eq_original = eta / delta
+Y_eq_original = eta / gamma
 
 # Initial conditions from the provided MATLAB example
 X0 = 0.9 * X_eq_original
