@@ -103,6 +103,26 @@ b = np.array([eta, sigma], dtype=float)
 
 X_eq_new, Y_eq_new = np.linalg.solve(A, b)
 
+# Sensitivity analysis
+scenarios = {
+    "Weaker competition": (2.5e-6, 1e-6),
+    "Baseline": (5e-6, 2e-6),
+    "Stronger competition": (1e-5, 4e-6),
+}
+
+for name, (cx, cy) in scenarios.items():
+    A = np.array([
+        [cx, gamma],
+        [delta, -cy]
+    ], dtype=float)
+
+    b = np.array([eta, sigma], dtype=float)
+    X_eq, Y_eq = np.linalg.solve(A, b)
+
+    print(f"\n{name}")
+    print(f"Prey equilibrium: {X_eq:.2f}")
+    print(f"Predator equilibrium: {Y_eq:.2f}")
+
 print("Original equilibrium")
 print(f"Prey: {X_eq_original:.4f}")
 print(f"Predators: {Y_eq_original:.4f}")
