@@ -1,1 +1,18 @@
 Packages used within Module 3:
+
+NumPy:
+ - Creating the parameter matrices and vectors
+ - Solving for the equilibrium populations with np.linalg.solve()
+ - Generating evenly spaced time values with np.linspace()
+
+ SciPy:
+ - Approximate the solutions I compiled from differential equations from the specified initial populations over the interval
+
+ Matplotlib:
+
+ - Plot prey population over time
+ - Plot predator populations over time
+ - Compare the original and modified models
+ - Generate the phase-plane plot of predator population against prey population
+ - Save the figures as PNG files for my report
+ 
