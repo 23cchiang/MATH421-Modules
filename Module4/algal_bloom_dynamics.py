@@ -205,7 +205,6 @@ def solve_case(label, eta):
 
     print(f"Phase-plane plot saved to: {phase_path}")
 
-
 def main():
     print("Algal bloom model")
     print(
@@ -215,9 +214,11 @@ def main():
     print(f"Initial conditions: a0={A0}, C0={C0}")
     print(f"Plots will be saved in: {OUTPUT_DIR}")
 
-    # Two positive eta cases
-    solve_case("eta_positive_008", eta=0.08)
-    solve_case("eta_positive_012", eta=0.12)
+    # Case 1: Negative growth parameter
+    solve_case("eta_negative", eta=-0.08)
+
+    # Case 2: Positive growth parameter
+    solve_case("eta_positive", eta=0.08)
 
 
 if __name__ == "__main__":
