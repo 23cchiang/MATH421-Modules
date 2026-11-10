@@ -2,6 +2,8 @@
 import numpy as np
 from sklearn.datasets import load_iris
 
+### Used pip install scikit-learn numpy
+
 # ==========================================
 # PART 1 - QUESTION 3: BINARY IRIS CLASSIFIER
 # ==========================================
