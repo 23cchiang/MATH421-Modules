@@ -79,3 +79,51 @@ for k in range(3):
     print(f"g{k+1}(x) = {equation} + ({biases[k]:.4f})")
 
 print("\nTRAINING COMPLETE!")
+
+
+# ==========================================
+# QUESTION 3(c): CONFUSION MATRIX
+# ==========================================
+
+# 1. Calculate scores for all 150 flowers
+scores = X @ W.T + biases
+
+# 2. Predict the class with the highest score
+predictions = np.argmax(scores, axis=1)
+
+# 3. Create a 3x3 confusion matrix
+confusion = np.zeros((3, 3), dtype=int)
+
+for actual, predicted in zip(y, predictions):
+    confusion[actual, predicted] += 1
+
+# 4. Display confusion matrix
+print("\nCONFUSION MATRIX")
+print("Rows = Actual, Columns = Predicted")
+print("          Setosa  Versicolor  Virginica")
+
+for k in range(3):
+    print(f"{iris.target_names[k]:12}", confusion[k])
+
+# 5. Calculate misclassifications
+correct = np.trace(confusion)
+total = len(y)
+incorrect = total - correct
+
+# 6. Calculate accuracy
+accuracy = correct / total * 100
+
+print("\nCLASSIFICATION RESULTS")
+print("Correct predictions:", correct)
+print("Misclassified:", incorrect)
+print("Total specimens:", total)
+print(f"Accuracy: {accuracy:.2f}%")
+
+# 7. Calculate individual class accuracy
+print("\nCLASS ACCURACY")
+
+for k in range(3):
+    class_accuracy = confusion[k, k] / np.sum(confusion[k]) * 100
+    print(f"{iris.target_names[k]}: {class_accuracy:.2f}%")
+
+
